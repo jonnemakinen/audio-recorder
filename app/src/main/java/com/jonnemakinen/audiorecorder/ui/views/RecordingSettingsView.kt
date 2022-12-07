@@ -11,7 +11,11 @@ import androidx.compose.ui.unit.dp
 import com.jonnemakinen.audiorecorder.recorder.RecorderStateHolder
 
 @Composable
-fun RecordingSettingsView(recordingState: RecorderStateHolder, modifier: Modifier = Modifier) {
+fun RecordingSettingsView(
+    recordingState: RecorderStateHolder,
+    modifier: Modifier = Modifier,
+    permissionsGranted: Boolean
+) {
     Box(modifier = modifier.fillMaxSize()) {
         Text(
             modifier = Modifier
@@ -35,7 +39,10 @@ fun RecordingSettingsView(recordingState: RecorderStateHolder, modifier: Modifie
 
         }
         Button(
-            modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 30.dp),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 30.dp),
+            enabled = permissionsGranted,
             onClick = { recordingState.startRecording() }) {
             Text("Start")
         }
@@ -46,5 +53,5 @@ fun RecordingSettingsView(recordingState: RecorderStateHolder, modifier: Modifie
 @Composable
 @Preview
 fun RecordingSettingsViewPreview() {
-    RecordingSettingsView(RecorderStateHolder())
+    RecordingSettingsView(RecorderStateHolder(), permissionsGranted = true)
 }

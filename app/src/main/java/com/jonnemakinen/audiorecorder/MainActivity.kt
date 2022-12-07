@@ -58,7 +58,10 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background
             ) {
-                RecordingView(state = recordingManager.recordingState)
+                RecordingView(
+                    state = recordingManager.recordingState,
+                    permissionsGranted = permissionsGranted
+                )
             }
         }
     }

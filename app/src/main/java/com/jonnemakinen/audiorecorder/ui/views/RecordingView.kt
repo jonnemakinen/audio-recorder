@@ -18,13 +18,13 @@ import com.jonnemakinen.audiorecorder.ui.views.RecordingSettingsView
 
 
 @Composable
-fun RecordingView(state: RecorderStateHolder) {
+fun RecordingView(state: RecorderStateHolder, permissionsGranted: Boolean) {
     Box(modifier = Modifier.fillMaxSize()) {
 
         if (state.state == RecordingState.Recording) {
             RecordingOngoingView(state = state)
         } else if (state.state == RecordingState.Idle) {
-            RecordingSettingsView(recordingState = state)
+            RecordingSettingsView(recordingState = state, permissionsGranted = permissionsGranted)
         } else {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
@@ -35,5 +35,5 @@ fun RecordingView(state: RecorderStateHolder) {
 @Composable
 @Preview
 fun RecordingViewPreview() {
-    RecordingView(RecorderStateHolder())
+    RecordingView(RecorderStateHolder(), permissionsGranted = true)
 }
